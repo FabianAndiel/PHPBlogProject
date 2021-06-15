@@ -3,15 +3,15 @@
  * Copyright (c) CodeEngine Academy by Markus Lech. This is a Projekt from CodeEngine Academy. All rights reserved.
  ******************************************************************************/
 
-require __DIR__."/src/init.php";
+require __DIR__."./../src/init.php";
 ?>
 
 
-<?php require "elements/html/header.php" ?>
+<?php require "../elements/html/header.php" ?>
 <!--********************************************-->
 <!-- START NAVBAR -->
 <!--********************************************-->
-<?php require "elements/navbar.php" ?>
+<?php require "../elements/navbar.php" ?>
 <!--********************************************-->
 <!-- END NAVBAR -->
 <!--********************************************-->
@@ -19,8 +19,9 @@ require __DIR__."/src/init.php";
 
 <?php
     $postsRepository = new App\Posts\PostsRepository($pdo);
+    $id = $_GET['id'];
+    $posts = $postsRepository->fetchPost($id);
 
-    $posts = $postsRepository->fetchPosts();
 ?>
 
 
@@ -36,20 +37,16 @@ require __DIR__."/src/init.php";
 <!--********************************************-->
 
 
-<?php foreach ( $posts as $post): ?>
+
 <div class="container col-6 card">
     <div class="card-header">
         Blogeintrag
     </div>
     <div class="card-body">
-        <h5 class="card-title"><?php echo $post->title?></h5>
-        <a href="/PHPBlogProject/pages/post.php?id=<?php echo $post->id?>" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title"><?php echo $posts->title ?></h5>
+       <p><?php echo nl2br($posts->content) ?>  </p>
     </div>
 </div>
 <br>
-<?php endforeach; ?>
 
-
-
-<?php require "elements/html/footer.php" ?>
-
+<?php require "../elements/html/footer.php" ?>
