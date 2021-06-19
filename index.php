@@ -8,46 +8,16 @@ require __DIR__."/src/init.php";
 
 
 <?php require "elements/html/header.php" ?>
-<!--********************************************-->
-<!-- START NAVBAR -->
-<!--********************************************-->
+
 <?php require "elements/navbar.php" ?>
-<!--********************************************-->
-<!-- END NAVBAR -->
-<!--********************************************-->
 
 
 <?php
-    $postsRepository = new App\Posts\PostsRepository($pdo);
+    $postsController = $container->make("postsController");
+    $postsController->index();
 
-    $posts = $postsRepository->fetchPosts();
 ?>
 
-
-<br>
-<br>
-<h1 class="container col-6"> Meine Posts</h1>
-<br>
-<br>
-
-
-<!--********************************************-->
-<!-- START POSTS -->
-<!--********************************************-->
-
-
-<?php foreach ( $posts as $post): ?>
-<div class="container col-6 card">
-    <div class="card-header">
-        Blogeintrag
-    </div>
-    <div class="card-body">
-        <h5 class="card-title"><?php echo $post->title?></h5>
-        <a href="/PHPBlogProject/pages/post.php?id=<?php echo $post->id?>" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>
-<br>
-<?php endforeach; ?>
 
 
 

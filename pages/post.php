@@ -18,10 +18,11 @@ require __DIR__."./../src/init.php";
 
 
 <?php
-    $postsRepository = new App\Posts\PostsRepository($pdo);
+    $postsRepository = $container->getRepository();
     $id = $_GET['id'];
     $posts = $postsRepository->fetchPost($id);
 
+    var_dump($postsRepository);
 ?>
 
 
