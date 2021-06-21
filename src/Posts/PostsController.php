@@ -2,16 +2,38 @@
 
 namespace App\Posts;
 
-class PostsController{
+use App\Core\Container;
 
-    public function __construct(PostsRepository $postsRepository)
-    {
-        $this->postsRepository = $postsRepository;     
+class PostsController {
+
+    public function __construct($postsRepository){
+            $this->postsRepository = $postsRepository;
     }
 
-    public function index() {
+    protected function render($view, $parameter){
+        
+        extract($parameter);
+        //var_dump($parameter);
+        require __DIR__ . "./../views/{$view}.php";
+    }
+
+
+    public function allPosts(){
+
         $posts = $this->postsRepository->fetchPosts();
-        echo "Ich wurde ausgeführt";
+
+        $this->render("posts/allposts", [
+            'posts' => $posts
+        ]);
     }
 
+    public function singlePost(){
+
+        $postid = $_GET['id'];
+        $post = $this->postsRepository->fetchPost($postid);
+
+        $this->render("posts/singlepost", [
+            'post' => $post
+        ]);
+    }
 }
