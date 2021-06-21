@@ -2,27 +2,19 @@
 
 namespace App\Posts;
 
-use App\Core\Container;
+use App\Core\AbstractController;
 
-class PostsController {
+class PostsController extends AbstractController {
 
     public function __construct($postsRepository){
             $this->postsRepository = $postsRepository;
     }
 
-    protected function render($view, $parameter){
-        
-        extract($parameter);
-        //var_dump($parameter);
-        require __DIR__ . "./../views/{$view}.php";
-    }
-
-
     public function allPosts(){
 
-        $posts = $this->postsRepository->fetchPosts();
+        $posts = $this->postsRepository->fetchAll();
 
-        $this->render("posts/allposts", [
+        $this->render("allposts", [
             'posts' => $posts
         ]);
     }
@@ -30,9 +22,9 @@ class PostsController {
     public function singlePost(){
 
         $postid = $_GET['id'];
-        $post = $this->postsRepository->fetchPost($postid);
+        $post = $this->postsRepository->fetchOne($postid);
 
-        $this->render("posts/singlepost", [
+        $this->render("singlepost", [
             'post' => $post
         ]);
     }

@@ -15,19 +15,14 @@ class PostsRepository {
         $this->pdo = $pdo;
     }
 
-    
-    public function hi()
-    {
-        echo "hi";
-    }
 
-    public function fetchPosts(){
+    public function fetchAll(){
 
         $statement = $this->pdo->query("SELECT * FROM `posts`");
         return $statement->fetchAll(PDO::FETCH_CLASS,PostsModel::class);
     }
     
-    public function fetchPost($id){
+    public function fetchOne($id){
     
         $statement = $this->pdo->prepare("SELECT * FROM `posts` WHERE id = :id ");
         $statement->execute(array('id'=> $id));
