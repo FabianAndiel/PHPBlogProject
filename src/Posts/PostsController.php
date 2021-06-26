@@ -14,7 +14,7 @@ class PostsController extends AbstractController {
 
         $posts = $this->postsRepository->fetchAll();
 
-        $this->render("allposts", [
+        $this->render("posts/allposts", [
             'posts' => $posts
         ]);
     }
@@ -24,7 +24,7 @@ class PostsController extends AbstractController {
         $postid = $_GET['id'];
         $post = $this->postsRepository->fetchOne($postid);
 
-        $this->render("singlepost", [
+        $this->render("posts/singlepost", [
             'post' => $post
         ]);
     }

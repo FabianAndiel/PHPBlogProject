@@ -6,7 +6,7 @@ abstract class AbstractController{
 
     function render($view,$param) {
         extract($param);
-        require __DIR__."../../views/posts/{$view}.php";
+        require __DIR__."/../views/{$view}.php";
     }
 
 } 
