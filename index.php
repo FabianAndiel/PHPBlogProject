@@ -1,9 +1,18 @@
 <?php
-/**
- * Copyright (c) CodeEngine Academy by Markus Lech. This is a Projekt from CodeEngine Academy. All rights reserved.
- ******************************************************************************/
+
 
 require __DIR__ . "/src/init.php";
 
-$postsController = $container->make("postsController");
-$postsController->allPosts();
+
+$pathinfo = $_SERVER["PATH_INFO"];
+
+if($pathinfo == "/index") {
+    $postsController = $container->make("postsController");
+    $postsController->allPosts();    
+}
+
+elseif ($pathinfo == "/post") {
+    $postsController = $container->make("postsController");
+    $postsController->singlePost();
+}
+;

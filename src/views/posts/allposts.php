@@ -18,7 +18,7 @@
     </div>
     <div class="card-body">
         <h5 class="card-title"><?php echo $post->title?></h5>
-        <a href="/PHPBlogProject/pages/post.php?id=<?php echo $post->id?>" class="btn btn-primary">Go somewhere</a>
+        <a href="/PHPBlogProject/index.php/post?id=<?php echo $post->id?>" class="btn btn-primary">Go somewhere</a>
     </div>
 </div>
 <br>

@@ -1,8 +1,8 @@
-<?php require "../elements/html/header.php" ?>
+<?php require __DIR__."/../../../elements/html/header.php" ?>
 <!--********************************************-->
 <!-- START NAVBAR -->
 <!--********************************************-->
-<?php require "../elements/navbar.php" ?>
+<?php require __DIR__."/../../../elements/html/header.php" ?>
 <!--********************************************-->
 <!-- END NAVBAR -->
 <!--********************************************-->
@@ -32,4 +32,4 @@
 </div>
 <br>
 
-<?php require "../elements/html/footer.php" ?>
+<?php require __DIR__."/../../../elements/html/footer.php" ?>
