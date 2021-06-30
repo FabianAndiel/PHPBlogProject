@@ -7,12 +7,14 @@ use PDO;
 
 abstract class AbstractRepository {
 
-    private $pdo; 
+    protected $pdo; 
 
 
     abstract public function getTableName();
 
     abstract public function getModelName();
+
+    abstract public function getColumn();
 
     public function __construct($pdo)
     {
@@ -31,11 +33,24 @@ abstract class AbstractRepository {
         
         $posts = $this->getTableName();
         $model = $this->getModelName();
-        $statement = $this->pdo->prepare("SELECT * FROM $posts WHERE id = :id ");
+        $column = $this->getColumn();
+        $statement = $this->pdo->prepare("SELECT * FROM $posts WHERE $column = :id ");
         $statement->execute(array('id'=> $id));
         $statement->setFetchMode(PDO::FETCH_CLASS,$model);
         return $statement->fetch(PDO::FETCH_CLASS);
     }
+
+    public function fetchAllBy($id){
+        
+        $comments = $this->getTableName();
+        $model = $this->getModelName();
+        $column = $this->getColumn();
+        $statement = $this->pdo->prepare("SELECT * FROM $comments WHERE $column = :id ");
+        $statement->execute(array('id'=> $id));
+        $statement->setFetchMode(PDO::FETCH_CLASS,$model);
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
 
 
 } 

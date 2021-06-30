@@ -1,9 +1,10 @@
 <?php
-/**
- * Copyright (c) CodeEngine Academy by Markus Lech. This is a Projekt from CodeEngine Academy. All rights reserved.
- ******************************************************************************/
 
 namespace App\Core;
+
+use App\Posts\CommentsRepository;
+use App\Home\HomeController;
+use App\Home\HomeRepository;
 use App\Posts\PostsRepository;
 use App\Posts\PostsController;
 use PDO;
@@ -26,8 +27,18 @@ class Container
                 return new PostsRepository($this->make("pdo"));
             },
             'postsController'=> function() {
-                return new PostsController($this->make("postsRepository"));
-            }
+                return new PostsController($this->make("postsRepository"), $this->make("commentsRepository"));
+            },
+            'homeRepository' => function () {
+                return new HomeRepository($this->make("pdo"));
+            },
+            'homeController'=> function() {
+                return new HomeController($this->make("homeRepository"));
+            },
+            'commentsRepository' => function () {
+                return new CommentsRepository($this->make("pdo"));
+            },
+
         ];
     }
 

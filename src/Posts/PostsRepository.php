@@ -13,4 +13,9 @@ class PostsRepository extends AbstractRepository {
         return PostsModel::class;  
     }
 
+    public function getColumn()
+    {
+        return "id";
+    }
+
 }

@@ -1,7 +1,17 @@
 <?php
-/**
- * Copyright (c) CodeEngine Academy by Markus Lech. This is a Projekt from CodeEngine Academy. All rights reserved.
- ******************************************************************************/
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
+else{
+    session_destroy();
+}
+
+var_dump($_COOKIE);
+
+
 ?>
 
 

@@ -6,12 +6,16 @@ $pathinfo = $_SERVER["PATH_INFO"];
 
 $routes = [
     "/index" => [
-        'controller' => 'postsController',
-        'method' => 'allPosts'
+        'controller' => 'homeController',
+        'method' => 'showStart'
     ],
     "/post" => [
         'controller' => 'postsController',
         'method' => 'singlePost'        
+    ],
+    "/blogposts" => [
+        'controller' => 'postsController',
+        'method' => 'allPosts'        
         ]
     ];
 

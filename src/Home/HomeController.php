@@ -7,8 +7,9 @@ use App\Core\AbstractController;
 class HomeController extends AbstractController {
 
     public function showStart(){
+        $this->render("home/home", [
+        ]);
+    }
 
-    $this->render("home/home", [
-    ]);
-}
+    
 }
