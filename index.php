@@ -16,7 +16,11 @@ $routes = [
     "/blogposts" => [
         'controller' => 'postsController',
         'method' => 'allPosts'        
-        ]
+        ],
+        "/login" => [
+            'controller' => 'userController',
+            'method' =>'login'        
+            ]
     ];
 
     if(isset($routes[$pathinfo])) {

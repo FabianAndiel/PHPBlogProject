@@ -13,3 +13,6 @@ function html(string $string):string {
     $formattedString = str_replace('&lt;br&gt;','<br>',$formattedString);
     return $formattedString;
 }
+
+// $test = $container->make("userRepository");
+// var_dump($test->fetchAllByUSERID(1));

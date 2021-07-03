@@ -16,11 +16,19 @@ class HomeRepository extends AbstractRepository {
         return HomeModel::class;
     }
 
-    public function getColumn()
+    public function getColumnID()
     {
-        return "postid";
+        // return "postid";
     }
 
+    function getColumnUSERNAME(){
+        return "username";
+    }
+
+    
+    function getColumnUSERID(){
+        return "userid";
+    }
 
 
 }

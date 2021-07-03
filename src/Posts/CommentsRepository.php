@@ -18,9 +18,13 @@ class CommentsRepository extends AbstractRepository {
        return CommentsModel::class; 
     }
 
-    public function getColumn()
+    public function getColumnID()
     {
         return "postid";
+    }
+
+    function getColumnUSERNAME(){
+        return "username";
     }
 
     public function insertCommentIntoPost($postid,$content) {
@@ -30,6 +34,11 @@ class CommentsRepository extends AbstractRepository {
         VALUES (null, :postid, :content)");
         $statement->execute(array('postid'=> $postid,'content'=> $content));
         
+    }
+
+    
+    function getColumnUSERID(){
+        return "userid";
     }
 
 
