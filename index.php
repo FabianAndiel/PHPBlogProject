@@ -2,6 +2,8 @@
 
 require __DIR__ . "/src/init.php";
 
+session_start();
+
 $pathinfo = $_SERVER["PATH_INFO"];
 
 $routes = [
@@ -24,7 +26,16 @@ $routes = [
         "/register" => [
             'controller' => 'userController',
             'method' =>'register'        
-            ]
+        ],
+        "/dashboard" => [
+            'controller' => 'userController',
+            'method' =>'dashboard'        
+        ],
+        "/logout" => [
+            'controller' => 'userController',
+            'method' =>'logout'        
+        ]
+
     ];
 
     if(isset($routes[$pathinfo])) {

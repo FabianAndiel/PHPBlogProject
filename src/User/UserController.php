@@ -41,6 +41,21 @@ class UserController extends AbstractController{
         ]);
     }
 
+    public function dashboard() {
+        if(isset($_SESSION["username"])) {
+            echo $_SESSION["username"]." ist eingeloggt";
+        }
+        else {
+            header("Location:login");
+        }
+    }
+
+    public function logout() {
+        unset($_SESSION["username"]);
+        session_regenerate_id(true);
+        header("Location:login");
+    }
+
     public function login() {
         // var_dump($_POST);
 
@@ -59,7 +74,9 @@ class UserController extends AbstractController{
 
                 // if($user->password == $password) {
                 if(password_verify($password,$user->password)) {
-                    $notice = "password is fine";
+                    $_SESSION["username"] = $user->username; 
+                    session_regenerate_id(true);
+                    header("Location:dashboard");
                     die();
                 }
                 else {
