@@ -4,12 +4,13 @@ namespace App\User;
 
 use App\Core\AbstractController;
 use App\User\UserRepository;
+use App\User\LoginService;
 
 class UserController extends AbstractController{
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(LoginService $loginService)
     {
-        $this->userRepository = $userRepository;
+        $this->loginService = $loginService;
     }
 
     public function register() {
@@ -66,34 +67,17 @@ class UserController extends AbstractController{
             $username = $_POST["username"];
             $password = $_POST["password"];
             
-            $user = $this->userRepository->fetchAllByUSERNAME($username);
-            var_dump($user->password);
-            var_dump($password);
 
-            if(!empty($user)){
-
-                // if($user->password == $password) {
-                if(password_verify($password,$user->password)) {
-                    $_SESSION["username"] = $user->username; 
-                    session_regenerate_id(true);
-                    header("Location:dashboard");
-                    die();
-                }
-                else {
-                    $notice = "login daten stimmen nicht überein";
-                }
+            if($this->loginService->attempLogin($username,$password)) {
+                header("Location:dashboard");
+                return;
             }
 
-            else {
-                $notice = "login passt nicht";
+            else{ 
+                echo "login Daten passen nicht";
             }
         }
 
-        else {
-            if(empty($_POST["loginbutton"])){
-                $notice = "bitte Formular ausfüllen";
-            }
-        }
     
         $this->render("user/loginuser", [
             'notice' => $notice

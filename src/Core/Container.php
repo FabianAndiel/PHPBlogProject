@@ -7,6 +7,7 @@ use App\Home\HomeController;
 use App\Home\HomeRepository;
 use App\Posts\PostsRepository;
 use App\Posts\PostsController;
+use App\User\LoginService;
 use App\User\UserRepository;
 use App\User\UserController;
 use PDO;
@@ -43,8 +44,11 @@ class Container
             'userRepository' => function () {
                 return new UserRepository($this->make("pdo"));
             },
+            'loginService' => function () {
+                return new LoginService($this->make("userRepository"));
+            },
             'userController' => function () {
-                return new UserController($this->make("userRepository"));
+                return new UserController($this->make("loginService"));
             }
 
 
