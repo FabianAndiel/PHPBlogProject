@@ -31,7 +31,7 @@
             </div>
             <br>
             <div class=" title-login-container-account">
-                <h3 class="title-login-account">Login to your Account</h3>
+                <h3 class="title-login-account">Register your account</h3>
             </div>
             <br>
             <div class="form-group">
@@ -61,13 +61,7 @@
                 <div class="submit-button-container">
                     <button type="submit"
                             class="btn btn-primary login-button"
-                            name="loginbutton">Login</button>
-                </div>
-                <div class="error">
-                    <?php if (!empty($notice)); ?>
-                    <p> <?php echo $notice;?></p>
-                        <br>
-                        <br>
+                            name="loginbutton">Register</button>
                 </div>
             </div>
         </form>

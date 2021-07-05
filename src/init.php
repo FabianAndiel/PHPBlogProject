@@ -14,5 +14,10 @@ function html(string $string):string {
     return $formattedString;
 }
 
+// echo "Testpasswort ist fabian";
+// $hasedPasswo = password_hash("fabian",PASSWORD_DEFAULT);
+
+// echo password_verify("fabian",$hasedPasswo);
+
 // $test = $container->make("userRepository");
 // var_dump($test->fetchAllByUSERID(1));

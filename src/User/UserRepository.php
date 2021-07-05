@@ -30,5 +30,14 @@ class UserRepository extends AbstractRepository {
             return "userid";
         }
 
+        public function insertNewUser($username,$password) {
+            $table = $this->getTableName();
+         
+            $statement = $this->pdo->prepare("INSERT INTO $table (userid, username, password)
+            VALUES (null, :username, :password)");
+            $statement->execute(array('username'=> $username,'password'=> $password));
+            
+        }
+
 
 }

@@ -20,6 +20,10 @@ $routes = [
         "/login" => [
             'controller' => 'userController',
             'method' =>'login'        
+        ],
+        "/register" => [
+            'controller' => 'userController',
+            'method' =>'register'        
             ]
     ];
 
