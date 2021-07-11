@@ -13,11 +13,3 @@ function html(string $string):string {
     $formattedString = str_replace('&lt;br&gt;','<br>',$formattedString);
     return $formattedString;
 }
-
-// echo "Testpasswort ist fabian";
-// $hasedPasswo = password_hash("fabian",PASSWORD_DEFAULT);
-
-// echo password_verify("fabian",$hasedPasswo);
-
-// $test = $container->make("userRepository");
-// var_dump($test->fetchAllByUSERID(1));

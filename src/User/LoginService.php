@@ -9,6 +9,34 @@ class LoginService {
         $this->userRepository = $userRepository;
     }
 
+    public function attempRegister($username,$password) {
+
+        $user = $this->userRepository->fetchAllByUSERNAME($username);
+
+        if(empty($user)) {
+            $this->userRepository->insertNewUser($username,$password);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function checkLogin() {
+        if(isset($_SESSION["username"])) {
+            return true;
+        }
+        else {
+            header("Location:login");
+            return false;
+        }
+    }
+
+    public function logout() {
+        unset($_SESSION["username"]);
+        session_regenerate_id(true);
+    }
+
+
     public function attempLogin($username,$password) {
 
         $user = $this->userRepository->fetchAllByUSERNAME($username);

@@ -15,27 +15,21 @@ class UserController extends AbstractController{
 
     public function register() {
 
-        var_dump($_POST);
-
         if(!empty($_POST["username"]) AND !empty($_POST["password"]) ){
             
             $username = $_POST["username"];
             $password = $_POST["password"];
             $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
 
-            $newuser = $this->userRepository->fetchAllByUSERNAME($username);
-
-            if(!empty($newuser)) {
-                echo "Diesen Benutzernamen gibt es bereits";
+            if($this->loginService->attempRegister($username,$hashedPassword)) {
+                header("Location:login");
+                return true;
             }
 
             else{ 
-               
-                $this->userRepository->insertNewUser($username,$hashedPassword);
+               echo "this username exists already";
             }
         }
-
-
         $this->render("user/register",
         [
 
@@ -43,17 +37,15 @@ class UserController extends AbstractController{
     }
 
     public function dashboard() {
-        if(isset($_SESSION["username"])) {
+
+        if($this->loginService->checkLogin()) {
             echo $_SESSION["username"]." ist eingeloggt";
         }
-        else {
-            header("Location:login");
-        }
+       
     }
 
     public function logout() {
-        unset($_SESSION["username"]);
-        session_regenerate_id(true);
+        $this->loginService->logout();
         header("Location:login");
     }
 
